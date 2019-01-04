@@ -5,7 +5,7 @@ This is a simple bash script to get the averages of various website response tim
 ### Requirements
 ```
 sudo apt-get install curl #cURL command line tool
-sudo apt-get bc #bc command line calculator
+sudo apt-get install bc #bc command line calculator
 ```
 
 ### How to use
