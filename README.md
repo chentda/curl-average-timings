@@ -14,6 +14,6 @@ git clone git@github.com:chentda/curl-average-timings.git
 
 cd curl-average-timings
 
-./curl_average_timings.sh "URL for website" <Number of interations as integer>
+./curl_average_timings.sh <"URL for website"> <Number of iterations as integer>
 
 ```
