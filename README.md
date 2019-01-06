@@ -4,8 +4,8 @@ This is a simple bash script to get the averages of various website response tim
 
 ### Requirements
 ```
-sudo apt-get install curl #cURL command line tool
-sudo apt-get install bc #bc command line calculator
+sudo apt-get install curl  #cURL command line tool
+sudo apt-get install bc    #bc command line calculator
 ```
 
 ### How to use
@@ -19,8 +19,20 @@ cd curl-average-timings
 ```
 
 ### Example
+```bash
+./curl_average_timings.sh "https://www.github.com" 10
 
+Averages of response timings:
 
+   time_namelookup: .01380
+      time_connect: .19130
+   time_appconnect: .88800
+  time_pretransfer: .88810
+     time_redirect: 0
+time_starttransfer: 1.07660
+                    --------
+        time_total: 1.07670
+```
 ### cURL Timings Definitions (According to [cURL's manual page](https://curl.haxx.se/docs/manpage.html))
 * **namelookup**: The time, in seconds, it took from the start until the name resolving was completed.
 * **connect**: The time, in seconds, it took from the start until the TCP connect to the remote host (or proxy) was completed.
