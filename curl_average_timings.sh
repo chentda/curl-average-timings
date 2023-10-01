@@ -20,6 +20,8 @@ total_time_redirect="0"
 total_time_starttransfer="0"
 total_time_total="0"
 
+echo "making ${iterations} requests to URL=${URL}"
+
 if [ "$proxy" != "" ]; then
     proxySuffix="-x ${proxy}"
 fi
@@ -49,6 +51,8 @@ do
 	total_time_redirect=$(echo "$total_time_redirect + $time_redirect" | bc)
 	total_time_starttransfer=$(echo "$total_time_starttransfer + $time_starttransfer" | bc)
 	total_time_total=$(echo "$total_time_total + $time_total" | bc)
+
+	echo "request number ${i}: total_time=${time_total} seconds"
 done
 
 #Calculating the average for each type of response time
