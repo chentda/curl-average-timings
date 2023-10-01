@@ -29,7 +29,7 @@ echo "using proxySuffix '$proxySuffix'"
 
 for i in `seq 1 $iterations`;
 do
-	response=$(curl -o /dev/null -s -w $curl_format $URL $proxySuffix)
+	response=$(curl -o /dev/null -s -w $curl_format "$URL" $proxySuffix)
 
 	#Splits response string by the delimiter of "-"
 	response_times=($(echo "$response" | tr "-" "\n"))
