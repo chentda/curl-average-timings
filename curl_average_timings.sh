@@ -8,6 +8,7 @@ curl_format="%{time_namelookup}-%{time_connect}-%{time_appconnect}-%{time_pretra
 URL=$1
 #How many requests you want to hit website with to get averages
 iterations=$2
+proxy=$3
 decimal_rounding=5
 
 #Initialising total variables for the various timings
@@ -19,9 +20,16 @@ total_time_redirect="0"
 total_time_starttransfer="0"
 total_time_total="0"
 
+echo "making ${iterations} requests to URL=${URL}"
+
+if [ "$proxy" != "" ]; then
+    proxySuffix="-x ${proxy}"
+fi
+echo "using proxySuffix '$proxySuffix'"
+
 for i in `seq 1 $iterations`;
 do
-	response=$(curl -o /dev/null -s -w $curl_format $URL)
+	response=$(curl -o /dev/null -s -w $curl_format "$URL" $proxySuffix)
 
 	#Splits response string by the delimiter of "-"
 	response_times=($(echo "$response" | tr "-" "\n"))
@@ -43,6 +51,8 @@ do
 	total_time_redirect=$(echo "$total_time_redirect + $time_redirect" | bc)
 	total_time_starttransfer=$(echo "$total_time_starttransfer + $time_starttransfer" | bc)
 	total_time_total=$(echo "$total_time_total + $time_total" | bc)
+
+	echo "request number ${i}: total_time=${time_total} seconds"
 done
 
 #Calculating the average for each type of response time
